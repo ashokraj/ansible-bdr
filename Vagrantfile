@@ -1,8 +1,10 @@
+
 Vagrant.configure("2") do |config|
 
   proname="node"  
+
   N=4
-  (1..4).each do |i|
+  (1..N).each do |i|
       config.vm.define "#{proname}-#{i}" do |node|
          node.vm.box="centos/7"
          node.vm.network :private_network, ip: "192.168.52.#{i}", virtualbox__intnet: true

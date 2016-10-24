@@ -22,6 +22,6 @@
   - name: Restarting PostgreSQL
     shell: source {{ ansible_env.HOME }}/.bash_profile && pg_ctl -D {{ pgdd }} start
 
-  - name: Adding BDR extensions
-    shell: source {{ ansible_env.HOME }}/.bash_profile && psql -d template1 -c "create extension if not exists btree_gist"  && psql -d template1 -c "create extension if not exists bdr"
+  - postgresql_ext: name=btree_gist db=template1
+  - postgresql_ext: name=bdr db=template1
 

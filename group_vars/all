@@ -4,23 +4,6 @@ pgver: 9.4
 
 bdrrepo: "http://packages.2ndquadrant.com/postgresql-bdr{{ pgver | replace('.','') }}-2ndquadrant/yum-repo-rpms/postgresql-bdr{{ pgver | replace('.','') }}-2ndquadrant-redhat-latest.noarch.rpm"
 
-bdrpkg: "postgresql-bdr{{ pgver | replace('.','') }}-bdr"
-
-pgpkgs: 
-      - "postgresql{{ pgver | replace('.','') }}.x86_64"
-      - "postgresql{{ pgver | replace('.','') }}-devel.x86_64"
-      - "postgresql{{ pgver | replace('.','') }}-contrib.x86_64"
-      - "postgresql{{ pgver | replace('.','') }}-libs.x86_64"
-      - "postgresql{{ pgver | replace('.','') }}-server.x86_64"
-      - "postgresql{{ pgver | replace('.','') }}-devel.x86_64"
-      - "postgresql{{ pgver | replace('.','') }}-plperl.x86_64"
-      - "postgresql{{ pgver | replace('.','') }}-plpython.x86_64"
-      - "postgresql{{ pgver | replace('.','') }}-python.x86_64"
+bdrpkgs: 
+      - "postgresql-bdr{{ pgver | replace('.','') }}-bdr"
       - "python-psycopg2.x86_64"
-      - "skytools-{{ pgver | replace('.','') }}.x86_64"
-      - "skytools-{{ pgver | replace('.','') }}-modules.x86_64"
-      - "slony1-{{ pgver | replace('.','') }}.x86_64"
-      - "perl-App-cpanminus.noarch"
-      - "http://ftp.pbone.net/mirror/download.fedora.redhat.com/pub/fedora/epel/7/x86_64/p/perl-DBIx-Safe-1.2.5-25.el7.noarch.rpm"
-      - "http://ftp.pbone.net/mirror/download.fedora.redhat.com/pub/fedora/epel/7/x86_64/p/perl-boolean-0.30-1.el7.noarch.rpm"
-      - "bucardo.noarch"
