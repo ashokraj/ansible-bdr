@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: yes
+  become_user: postgres
+  vars:
+    pgdd: "{{ ansible_env.HOME }}/{{ pgver }}/data"
+
+  tasks:
+  
+  - lineinfile: dest="{{ ansible_env.HOME }}/.bash_profile" line="export PATH=$PATH:/usr/pgsql-{{ pgver }}/bin"
+ 
+  - find: paths={{ pgdd }} 
+    register: files
+ 
+  - name: Postgres Initdb
+    shell: source {{ ansible_env.HOME }}/.bash_profile && initdb -D {{ pgdd }}
+    when: files.matched|int == 0
+
+  - include:   edit_postgres_conf.yml
+    notify: Restarting PostgreSQL
+ 
+  - name: Restarting PostgreSQL
+    shell: source {{ ansible_env.HOME }}/.bash_profile && pg_ctl -D {{ pgdd }} start
+
+  - name: Adding BDR extensions
+    shell: source {{ ansible_env.HOME }}/.bash_profile && psql -d template1 -c "create extension if not exists btree_gist"  && psql -d template1 -c "create extension if not exists bdr"
+

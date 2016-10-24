@@ -1,0 +1,11 @@
+---
+ - hosts: all
+   become: yes
+ 
+   tasks:
+     
+   - name: Install BDR Repo
+     yum: name="{{ bdrrepo }}" state=present
+     
+   - name: Install BDR
+     yum: name="{{ bdrpkg }}" state=present

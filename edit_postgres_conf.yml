@@ -1,0 +1,11 @@
+---
+  - replace: dest={{ pgdd }}/postgresql.conf regexp='#*(shared_preload_libraries *= *).*' replace="\1 'bdr'"
+  - replace: dest={{ pgdd }}/postgresql.conf regexp='#*(track_commit_timestamp  *= *).*' replace="\1 on"
+  - replace: dest={{ pgdd }}/postgresql.conf regexp='#*(wal_level *= *).*' replace="\1'logical'"
+  - replace: dest={{ pgdd }}/postgresql.conf regexp='#*(max_wal_senders *= *).*' replace="\1 10"
+  - replace: dest={{ pgdd }}/postgresql.conf regexp='#*(max_replication_slots *= *).*' replace="\1 10"
+  - replace: dest={{ pgdd }}/postgresql.conf regexp='#*(max_worker_processes *= *).*' replace="\1 10"
+  - replace: dest={{ pgdd }}/postgresql.conf regexp='#*(listen_addresses *= *).*' replace="\1 '*'"
+  - replace: dest={{ pgdd }}/postgresql.conf regexp='#*(log_destination *= *).*' replace="\1 'csvlog'"
+  - lineinfile: dest={{ pgdd }}/pg_hba.conf  line="host    all             all             all                     trust"
+  - lineinfile: dest={{ pgdd }}/pg_hba.conf  line="host    replication             all             all                     trust"
